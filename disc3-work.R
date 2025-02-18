@@ -39,7 +39,22 @@ pairs(city, panel = panel.smooth)
 ###
 
 # box plots
+# create a box plot of Porto using the generated city data
+boxplot(city$porto, main = "Box Plot of Porto") 
+
+# generate a box plot and violin plot using the penguin data from class
+# load in necessary libraries 
+library(tidyverse)
+library(palmerpenguins)
+
+# load in penguin data set into r
+data("penguins")
+
+# generate a box plot to see how the bill_depth_mm variable changes with each species
+boxplot(bill_depth_mm ~ species, data = penguins, ylab = "bill depth (mm)",
+        xlab = "species", main = "Box Plot of Bill Depth over Species")
 
 # facets in ggplot
+
 
 # legends in ggplot
