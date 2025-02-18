@@ -54,7 +54,34 @@ data("penguins")
 boxplot(bill_depth_mm ~ species, data = penguins, ylab = "bill depth (mm)",
         xlab = "species", main = "Box Plot of Bill Depth over Species")
 
-# facets in ggplot
+# generate a violin plot to see how the bill_length_mm variable changes with each species
+# load in necessary library
+library(vioplot)
+vioplot(bill_length_mm ~ species, data = penguins, ylab = "bill length (mm)",
+        xlab = "species", col = "light green",
+        main = "Violin Plot of Bill Length over Species")
 
+# facets in ggplot
+# use facet_wrap to facet a plot by a single variable 
+# generate a scatter plot of bill_length_mm vs body_mass_g faceted by which island the
+# penguin is on 
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  facet_wrap(~island)
 
 # legends in ggplot
+orig_plot <- ggplot(data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + geom_point() 
+orig_plot
+
+# use labs to change the name of a legend
+orig_plot <- orig_plot + labs(color = "Penguin Species")
+orig_plot
+
+# use legend.position within theme() to move around the location of the legend around
+orig_plot <- orig_plot + theme(legend.position = "bottom")
+orig_plot
+
+# use legend.text within theme() to change the appearance of legend text (color/size)
+orig_plot <- orig_plot + theme(legend.text = element_text(size = 8, colour = "gray"))
+orig_plot
